@@ -5,6 +5,7 @@ import AccountsService from './accounts.service'
 import ClientService from './client.service'
 import NewAccountService from './newAccount.service'
 import HealthService from './health.service'
+import SmartBedService from './smart.bed.service'
 const Services = angular
   .module('app.services', [])
   .service('AccountService', AccountService)
@@ -13,6 +14,7 @@ const Services = angular
   .service('ClientService', ClientService)
   .service('NewAccountService', NewAccountService)
   .service('HealthService', HealthService)
+  .service('SmartBedService', SmartBedService)
   .name
 
 export default Services
