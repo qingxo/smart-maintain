@@ -1,0 +1,24 @@
+.right-content{
+  background-color: white;
+  min-height: 900px;
+  border-radius: 5px;
+  .head-tips{
+    height:55px;
+    line-height: 55px;
+    .tips-info{
+      font-size:22px;
+      font-weight: bold;
+      padding-left:15px;
+    }
+    border-bottom: 1px solid #cccccc;
+  }
+  .detail-content{
+    text-align: center;
+    .detailform{
+      width:100%;
+      margin:20px auto;
+
+    }
+
+  }
+}

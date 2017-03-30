@@ -1,0 +1,35 @@
+<div class="container" >
+  <div class="toolbar clearfix" >
+    <div class="logo">
+      <span>智汇健康</span><span>后台管理</span>
+    </div>
+    <div class="statistical">
+      <a href="#" class="statistical-item" ng-click="$ctrl.toggleLogout()">{{$ctrl.userName}}</a>
+      <div class="user-info dis-{{$ctrl.toggleLogOutFlag}}">
+        <div class="user-detail">
+          <span class="user-name">{{$ctrl.userName}}</span>
+          <span class="logout" ng-click="$ctrl.logOut($event)">退出登录</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="sidebar home-sidebar" style="position:fixed;top:90px" ng-class="{fold: $ctrl.fold}">
+    <h2 class="catalog">智汇健康医养护平台</h2>
+    <div class="inner">
+      <div class="organization-menu">
+        <ul class="first-level">
+          <li class="dotHover"><span ui-sref="home.myaccount"   class="firstPage">我的账号</span></li>
+          <li class="dotHover"><span ui-sref="home.accounts" ng-click="$ctrl.handerColorInit(2)" class="appManage">账号管理</span></li>
+          <li class="dotHover"><span ui-sref="home.health" ng-click="$ctrl.handerColorInit(5)" class="alarmManage">健康服务专员管理</span></li>
+          <li class="dotHover"><span ui-sref="home.client" ng-click="$ctrl.handerColorInit(5)" class="alarmManage">客户管理</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="content">
+    <div ui-view>
+
+    </div>
+  </div>
+</div>

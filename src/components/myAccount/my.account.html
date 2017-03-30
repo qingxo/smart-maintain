@@ -1,0 +1,80 @@
+<div class="right-content">
+  <div class="head-tips">
+      <span class=tips-info>我的账号</span>
+  </div>
+  <div class="detail-content">
+    <div class="detailform">
+      <div class="line">
+        <label for="">账户角色*</label><div class="inline">
+          <input type='checkbox' value="globalmanager" ng-model="$ctrl.glo" /><label for="">系统管理员</label>
+          <input type='checkbox' value="systemmanager" ng-model="$ctrl.sys" /><label for="">平台管理员</label>
+          <input type='checkbox' value="healthmanager" ng-model="$ctrl.hel" /><label for="">健康服务专员</label>
+        </div>
+      </div>
+      <div class="line">
+        <label for="">姓名*</label>
+        <div class="inline">
+          <input type="text" name="" value="" ng-model="$ctrl.realname">
+        </div>
+      </div>
+
+      <div class="line">
+        <label for="">手机号*</label>
+        <div class="inline">
+          <input type="text" name="" value="" ng-model="$ctrl.mobile">
+        </div>
+      </div>
+
+      <div class="line">
+        <label for="">用户名*</label>
+        <div class="inline">
+          <input type="text" name="" value="" ng-model="$ctrl.username">
+        </div>
+      </div>
+
+      <div class="line">
+        <label for="">密码*</label>
+        <div class="inline">
+          <input type="password" name="" value="" ng-model="$ctrl.pwd">
+        </div>
+      </div>
+
+      <div class="line">
+        <label for="">邮箱</label>
+        <div class="inline">
+          <input type="text" name="" value="" ng-model="$ctrl.email">
+        </div>
+      </div>
+      <div class="line">
+        <label for="">性别</label>
+        <div class="inline">
+          <input type="radio" name="sex" value="male" ng-model="$ctrl.sex"><label for="">男</label>
+          <input type="radio" name="sex" value="female" ng-model="$ctrl.sex"><label for="">女</label>
+        </div>
+      </div>
+      <div class="line">
+        <label for="">生日</label>
+        <div class="inline">
+          <input type="text" name="" value="" ng-model="$ctrl.time">
+        </div>
+      </div>
+      <div class="line">
+        <label for="">地区</label>
+        <div class="inline">
+          <input type="text" name="" value="" ng-model="$ctrl.address">
+        </div>
+      </div>
+      <div class="line">
+        <label for="">备注</label>
+        <div class="inline">
+          <textarea rows="10" ng-model="$ctrl.remark"></textarea>
+        </div>
+      </div>
+
+      <div class="btn" ng-click="$ctrl.save()">
+        保存
+      </div>
+    </div>
+
+  </div>
+</div>

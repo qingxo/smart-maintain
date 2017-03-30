@@ -1,0 +1,22 @@
+<div class="topnav">
+  <div class="inner">
+    <a class="logo" href="#"
+      ui-sref="home.index({organizationId: $ctrl.organization.organizationId, status: 'total'})"
+      ng-click="$ctrl.onGoHome({$event: {organizationId: $ctrl.organization.organizationId}})">
+      <img src="/img/smart-care.png" width="85" height="23" alt="Smart Care">
+    </a>
+    <span class="organization">{{$ctrl.organization.organizationName}}</span>
+    <div class="nav-content">
+      <span class="nav-item alert" ng-show="$ctrl.warnBool"><a href="#" ng-click="$ctrl.settingLocal(2)">异常提醒</a></span>
+      <span class="nav-item config" ng-show="$ctrl.settingBool"><a href="#"  ng-click="$ctrl.settingLocal(1)">设置</a></span>
+      <div class="user" ng-click="$ctrl.toggleUserLogOut()"></div>
+    </div>
+    <div class="user-out" ng-show="$ctrl.userLongout">
+      <span class="user-item-1"><a>{{$ctrl.accName}}</a></span>
+      <div class="user-item-2" ng-click="$ctrl.logOut($event)">
+        <span class="user-logout"><a href="#">退出登录</a></span>
+        <span class="user-logout-icon"></span>
+      </div>
+    </div>
+  </div>
+</div>
