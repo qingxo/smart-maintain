@@ -14,6 +14,10 @@ class HealthService{
     return this.$http.post('api/account/delete/'+data)
   }
 
+  defaultPerson(id) {
+    return this.$http.post('api/account/setDefaultCommissioner/'+id)
+  }
+
 }
 HealthService.$inject = ['$http','$state']
 export default HealthService

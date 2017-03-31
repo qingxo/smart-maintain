@@ -53,9 +53,9 @@ class NewHealthController {
       closeByDocument: false,
       closeByEscape: true
     })
-    // setTimeout(function () {
-    //   this.dialog2.close()
-    // }, 1500)
+    setTimeout(function () {
+      this.dialog2.close()
+    }, 1500)
   }
 
 }
