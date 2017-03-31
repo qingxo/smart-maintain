@@ -6,6 +6,14 @@ class HealthService{
     this.$state = $state
   }
 
+  healthList(data) {
+    return this.$http.post('api/account/listByPage'+data)
+  }
+
+  delPerson(data) {
+    return this.$http.post('api/account/delete/'+data)
+  }
+
 }
 HealthService.$inject = ['$http','$state']
 export default HealthService

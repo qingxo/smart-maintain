@@ -10,8 +10,8 @@ class SmartBedService{
     // return this.$http.post('/customer/bunding',data)
   }
 
-  save() {
-    return this.$http.post('/customer/bunding',data)
+  save(data) {
+    return this.$http.post('api/customer/bunding',storage.serialize(data))
   }
 }
 SmartBedService.$inject = ['$http', '$state']

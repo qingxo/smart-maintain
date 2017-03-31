@@ -18,16 +18,11 @@ class ClientController {
   clientList(data) {
     this.ClientService.clientList(data).then((res)=>{
       if(!res.data) return
-      console.log(res);
       if(res.data.success) {
         this.list = res.data.data.result
-        console.log(this.list);
       }
 
     })
-  }
-
-  save() {
   }
 
 }

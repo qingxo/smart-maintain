@@ -1,0 +1,55 @@
+.right-content{
+  background-color: white;
+  min-height: 900px;
+  border-radius: 5px;
+  .head-tips{
+    height:55px;
+    line-height: 55px;
+    .tips-info{
+      font-size:22px;
+      font-weight: bold;
+      padding-left:15px;
+    }
+    border-bottom: 1px solid #cccccc;
+  }
+  .detail-content{
+    text-align: center;
+    .detailform{
+      width:100%;
+      margin:20px auto;
+      .line{
+        display:block;
+        width:600px;
+        margin:auto;
+        margin-bottom:20px;
+        &>label{
+          width: 100px;
+          text-align: right;
+          float: left;
+        }
+        .inline{
+          text-align: left;
+          padding-left: 120px;
+          &>label{
+            padding-right: 20px;
+            padding-left:5px;
+          }
+          input[type="text"],textarea{
+            width:300px;
+          }
+        }
+      }
+      .btn{
+        background-color: #0095ff;
+        color: white;
+        width: 100px;
+        margin-top: 20px;
+        margin-left: 540px;
+        border-radius: 5px;
+        padding: 5px 0;
+        cursor: pointer;
+      }
+    }
+
+  }
+}

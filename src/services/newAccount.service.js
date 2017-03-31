@@ -7,8 +7,6 @@ class NewAccountService{
   }
 
   saveClient(data) {
-    console.log(data);
-    console.log(storage.serialize(data));
     return this.$http.post('api/customer/add',storage.serialize(data))
   }
 

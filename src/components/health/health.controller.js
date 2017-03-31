@@ -2,40 +2,61 @@ import storage from '../../utils/storage'
 import angular from 'angular'
 
 class HealthController {
-  constructor(HealthService, $stateParams, $rootScope,$location) {
+  constructor(HealthService, $stateParams, $rootScope,$location,ngDialog) {
     this.stateParams = $stateParams
     this.HealthService = HealthService
     this.$rootScope = $rootScope
     this.$location = $location
-    this.relationShip = '0'
-    this.role = 3 //'默认为客户:0系统管理员 1平台管理员 2健康专员 3 客户
-    this.sex = 'M' // M:男
+    this.ngDialog = ngDialog
+    this.pageSize = 10
+    this.pageNum = 1
   }
 
   $onInit() {
     $('span[href="'+this.$location.url()+'"]').parent('li').addClass('flag')
+    this.healthList('?pageSize='+this.pageSize+'&pageNum='+this.pageNum)
   }
 
-  save() {
-    console.log(this.relationShip);
-    var data = {
-      "name":this.realname,
-      "mobile":this.mobile,
-      "sex":this.sex,
-      "birdthday":this.birdthday,
-      "height":this.height,
-      "weight":this.weight,
-      "address":this.address,
-      "guardianName":this.controlName,
-      "guardianMobile":this.controlMobile,
-      "relationToCustomer":this.relationShip,
-      "role":this.role
-    }
-    this.NewAccountService.saveClient(data).then((res) =>{
+  healthList(data) {
+    this.HealthService.healthList(data).then((res) =>{
+      if(!res.data) return
+      if(res.data.success) {
+        console.log(res.data.data.result);
+        this.list = res.data.data.result
+      }
 
     })
   }
 
+  del(id) {
+    this.HealthService.delPerson(id).then((res) =>{
+        if(!res.data) return
+        if(res.data.success) {
+          this.tips("删除成功")
+          this.delList(id)
+        }
+    })
+  }
+
+  //删除list中的数据
+  delList(id) {
+    for(var item in this.list) {
+      if(this.list[item].userId === id) {
+        this.list.splice(item,1);
+      }
+    }
+  }
+
+  tips(data) {
+    var dialog2 = this.ngDialog.open({
+      template: '<p style=" text-align:center" class="del-data-message">' + data + '</p>',
+      plain: true,
+      closeByDocument: false,
+      closeByEscape: true
+    })
+  }
+
+
 }
-HealthController.$inject = ['HealthService', '$stateParams', '$rootScope','$location']
+HealthController.$inject = ['HealthService', '$stateParams', '$rootScope','$location','ngDialog']
 export default HealthController
