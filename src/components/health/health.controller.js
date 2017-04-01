@@ -8,11 +8,12 @@ class HealthController {
     this.$rootScope = $rootScope
     this.$location = $location
     this.ngDialog = ngDialog
-    this.pageSize = 2
+    this.pageSize = 10
     this.pageNumber = 1
     this.lastPage = ''
     this.list = []
     this.defalutPerson = {}
+    this.morePage = false
   }
 
   $onInit() {
@@ -29,6 +30,7 @@ class HealthController {
         this.pagination = tools.ngSelPage(res)
         this.pageNumber = res.data.data.pageNumber
         this.lastPage = res.data.data.lastPage
+        this.morePage = res.data.data.totalCount>this.pageSize? true:false
       }
 
     })

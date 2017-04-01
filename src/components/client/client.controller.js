@@ -9,6 +9,7 @@ class ClientController {
     this.pageSize = 10
     this.pageNumber = 1
     this.lastPage = ''
+    this.morePage = false
   }
 
   $onInit() {
@@ -24,6 +25,8 @@ class ClientController {
         this.pagination = tools.ngSelPage(res)
         this.pageNumber = res.data.data.pageNumber
         this.lastPage = res.data.data.lastPage
+        this.morePage = res.data.data.totalCount>this.pageSize? true:false
+
       }
 
     })
