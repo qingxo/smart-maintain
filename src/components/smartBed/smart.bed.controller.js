@@ -35,6 +35,9 @@ class SmartBedController {
       if(res.data.code == '200') {
         this.tips("绑定成功")
         this.$state.go('home.client')
+      }else{
+        this.tipsConfirm(res.data.errormsg)
+
       }
     })
   }
@@ -46,10 +49,47 @@ class SmartBedController {
       closeByDocument: false,
       closeByEscape: true
     })
-    // setTimeout(function () {
-    //   this.dialog2.close()
-    // }, 1500)
   }
+
+  tipsConfirm(data) {
+    let self = this
+    var dialog = this.ngDialog.openConfirm({
+      template:'\
+                <p>'+data+'</p>\
+                <div class="ngdialog-buttons">\
+                    <button type="button" class="ngdialog-button ngdialog-button-secondary" ng-click="closeThisDialog(0)">取消</button>\
+                    <button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="confirm(1)">强制绑定</button>\
+                </div>',
+      plain: true,
+      closeByDocument: false,
+      closeByEscape: true
+    }).then(function(data){
+      self.reBunding()
+    },function(data){
+      console.log("no");
+    })
+  }
+
+  reBunding() {
+    if(!this.smartBed) {
+      return
+    }
+    var data = {
+      "customerId":this.customerId,
+      "mobile":this.mobile,
+      "name":this.name,
+      "equipmentNo":this.smartBed
+    }
+
+    this.SmartBedService.reBunding(data).then((res)=>{
+      if(!res) return
+      if(res.data.code == '200') {
+        this.tips("强制绑定成功")
+        this.$state.go('home.client')
+      }
+    })
+  }
+
 
 }
 SmartBedController.$inject = ['SmartBedService', '$stateParams', '$rootScope','$location','ngDialog','$state']

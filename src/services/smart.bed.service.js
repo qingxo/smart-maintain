@@ -13,6 +13,10 @@ class SmartBedService{
   save(data) {
     return this.$http.post('api/customer/bunding',storage.serialize(data))
   }
+
+  reBunding(data) {
+    return this.$http.post('api/customer/rebunding',storage.serialize(data))
+  }
 }
 SmartBedService.$inject = ['$http', '$state']
 export default SmartBedService
