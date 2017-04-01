@@ -3,6 +3,6 @@ export default function routes($stateProvider) {
     .state('home.myaccount', {
       url: '/myaccount',
       template: '<my-account></my-account>',
-      authenticate: false
+      authenticate: true
     })
 }

@@ -3,6 +3,6 @@ export default function routes($stateProvider) {
     .state('home.client', {
       url: '/client',
       template: '<client></client>',
-      authenticate: false
+      authenticate: true
     })
 }

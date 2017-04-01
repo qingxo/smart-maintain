@@ -69,11 +69,10 @@ class LoginController {
               localData[key] = userData[key]
             }
           }
-        //
+
           localData = Object.assign({}, localData, {token: token, sessionKey: sessionKey})
           storage.set('state', localData)
-          // this.$state.go('home.index', {organizationId: localData.organizationId})
-          this.$state.go('home.myaccount')
+          this.$state.go('home.health')
           var myView = document.getElementById('myView')
           myView.style.maxWidth = '1600px'
         }

@@ -1,28 +1,30 @@
 import storage from '../../utils/storage'
 class HomeController {
-  constructor(AccountService, $rootScope,$location) {
+  constructor(AccountService, $rootScope,$location,$state) {
     this.AccountService = AccountService
     this.toggleLogOutFlag = true
     this.$rootScope = $rootScope
     this.$location = $location
+    this.$state = $state
   }
 
   $onInit() {
-    // this.userName = storage.get('state').displayName
+    this.userName = storage.get('state').name
   }
 
   logOut() {
-    var token = storage.get('state').sessionKey
-    var self = this
-    this.AccountService.clearSession('?token=' + token)
-      .then((res) => {
-        if (!res.data) return
-        if (0 === res.data.code) {
-          storage.remove('settingLocal1')
-          storage.remove('settingLocal2')
-          self.AccountService.logout()
-        }
-      })
+    storage.remove('state')
+    this.$state.go('login')
+    // this.AccountService.clearSession('?token=' + token)
+    //   .then((res) => {
+    //     if (!res.data) return
+    //     if (0 === res.data.code) {
+    //       storage.remove('settingLocal1')
+    //       storage.remove('settingLocal2')
+    //       self.AccountService.logout()
+    //     }
+    //   })
+
   }
 
   handerColorInit(index) {
@@ -62,5 +64,5 @@ class HomeController {
   }
 
 }
-HomeController.$inject = ['AccountService', '$rootScope','$location']
+HomeController.$inject = ['AccountService', '$rootScope','$location','$state']
 export default HomeController

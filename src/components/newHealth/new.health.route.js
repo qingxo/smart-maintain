@@ -3,6 +3,6 @@ export default function routes($stateProvider) {
     .state('home.create', {
       url: '/create',
       template: '<new-health></new-health>',
-      authenticate: false
+      authenticate: true
     })
 }
