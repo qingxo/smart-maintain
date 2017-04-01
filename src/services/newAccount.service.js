@@ -10,6 +10,9 @@ class NewAccountService{
     return this.$http.post('api/customer/add',storage.serialize(data))
   }
 
+  getDefaultCommissioner() {
+    return this.$http.post('api/account/getDefaultCommissioner')
+  }
 }
 NewAccountService.$inject = ['$http','$state']
 export default NewAccountService

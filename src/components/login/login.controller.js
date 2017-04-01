@@ -40,13 +40,13 @@ class LoginController {
     }
 
     if(this.rememberPWD){
-        let data = {'userName':this.LoginName,'pwd':window.btoa(this.password)}
+        let data = {'userName':this.LoginName,'password':window.btoa(this.password)}
         storage.set('ywLogin',data)
     }else{
       storage.remove('ywLogin')
     }
 
-    var loginParam = '?userAccount=' + this.LoginName + '&userPwd=' + md5(this.password)
+    var loginParam = '?userName=' + this.LoginName + '&pasword=' + md5(this.password)
 
     this.AccountService.login(loginParam)
       .then((res) => {

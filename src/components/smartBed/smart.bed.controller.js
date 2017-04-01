@@ -1,7 +1,7 @@
 import storage from '../../utils/storage'
 
 class SmartBedController {
-  constructor(SmartBedService, $stateParams, $rootScope,$location,ngDialog) {
+  constructor(SmartBedService, $stateParams, $rootScope,$location,ngDialog,$state) {
     this.stateParams = $stateParams
     this.SmartBedService = SmartBedService
     this.$rootScope = $rootScope
@@ -9,6 +9,7 @@ class SmartBedController {
     this.pageNum = 1
     this.pageSize = 10
     this.ngDialog = ngDialog
+    this.$state = $state
   }
 
   $onInit() {
@@ -32,7 +33,8 @@ class SmartBedController {
     this.SmartBedService.save(data).then((res)=>{
       if(!res) return
       if(res.data.code == '200') {
-        this.tips("成功")
+        this.tips("绑定成功")
+        this.$state.go('home.client')
       }
     })
   }
@@ -50,5 +52,5 @@ class SmartBedController {
   }
 
 }
-SmartBedController.$inject = ['SmartBedService', '$stateParams', '$rootScope','$location','ngDialog']
+SmartBedController.$inject = ['SmartBedService', '$stateParams', '$rootScope','$location','ngDialog','$state']
 export default SmartBedController
