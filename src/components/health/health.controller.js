@@ -1,6 +1,6 @@
 import storage from '../../utils/storage'
 import angular from 'angular'
-
+import tools from '../../utils/tools'
 class HealthController {
   constructor(HealthService, $stateParams, $rootScope,$location,ngDialog) {
     this.stateParams = $stateParams
@@ -8,15 +8,16 @@ class HealthController {
     this.$rootScope = $rootScope
     this.$location = $location
     this.ngDialog = ngDialog
-    this.pageSize = 10
-    this.pageNum = 1
+    this.pageSize = 2
+    this.pageNumber = 1
+    this.lastPage = ''
     this.list = []
     this.defalutPerson = {}
   }
 
   $onInit() {
     $('span[href="'+this.$location.url()+'"]').parent('li').addClass('flag')
-    this.healthList('?pageSize='+this.pageSize+'&pageNum='+this.pageNum)
+    this.healthList('?pageSize='+this.pageSize+'&pageNum='+this.pageNumber)
     this.geDefaultPerson()
   }
 
@@ -25,6 +26,9 @@ class HealthController {
       if(!res.data) return
       if(res.data.success) {
         this.list = res.data.data.result
+        this.pagination = tools.ngSelPage(res)
+        this.pageNumber = res.data.data.pageNumber
+        this.lastPage = res.data.data.lastPage
       }
 
     })
@@ -105,6 +109,24 @@ class HealthController {
         this.refreshList(id)
       }
     })
+  }
+
+  goDetailPage(num) {
+    this.healthList('?pageSize='+this.pageSize+"&pageNum="+num)
+  }
+
+  ngPageUp() {
+    if(this.pageNumber!=1){
+       --this.pageNumber
+      this.healthList('?pageSize='+this.pageSize+"&pageNum="+this.pageNumber)
+    }
+  }
+
+  ngPageDown() {
+    if(!this.lastPage){
+      ++this.pageNumber
+      this.healthList('?pageSize='+this.pageSize+"&pageNum="+this.pageNumber)
+    }
   }
 
 

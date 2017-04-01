@@ -23,10 +23,9 @@ app.use(compression());
 app.use(express.static(path.join(__dirname, 'dist')));
 
 // api proxy
-app.use('/webplatform', proxy(config.api, {
+app.use('/api', proxy(config.api, {
   forwardPath: function (req, res) {
-    console.log("req's url:"+req.url);
-    return require('url').parse('/webplatform' + req.url).path;
+    return require('url').parse(req.url).path;
   }
 }));
 

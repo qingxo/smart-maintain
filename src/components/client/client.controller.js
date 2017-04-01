@@ -6,13 +6,14 @@ class ClientController {
     this.ClientService = ClientService
     this.$rootScope = $rootScope
     this.$location = $location
-    this.pageNum = 1
     this.pageSize = 10
+    this.pageNumber = 1
+    this.lastPage = ''
   }
 
   $onInit() {
     $('span[href="'+this.$location.url()+'"]').parent('li').addClass('flag')
-    this.clientList('?pageSize='+this.pageSize+"&pageNum="+this.pageNum)
+    this.clientList('?pageSize='+this.pageSize+"&pageNum="+this.pageNumber)
   }
 
   clientList(data) {
@@ -20,10 +21,30 @@ class ClientController {
       if(!res.data) return
       if(res.data.success) {
         this.list = res.data.data.result
-       this.pagination = tools.ngSelPage(res)
+        this.pagination = tools.ngSelPage(res)
+        this.pageNumber = res.data.data.pageNumber
+        this.lastPage = res.data.data.lastPage
       }
 
     })
+  }
+
+  goDetailPage(num) {
+    this.clientList('?pageSize='+this.pageSize+"&pageNum="+num)
+  }
+
+  ngPageUp() {
+    if(this.pageNumber!=1){
+       --this.pageNumber
+      this.clientList('?pageSize='+this.pageSize+"&pageNum="+this.pageNumber)
+    }
+  }
+
+  ngPageDown() {
+    if(!this.lastPage){
+      ++this.pageNumber
+      this.clientList('?pageSize='+this.pageSize+"&pageNum="+this.pageNumber)
+    }
   }
 
 }

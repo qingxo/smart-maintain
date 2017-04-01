@@ -31,7 +31,7 @@
           </tbody>
         </table>
         <div class="page-turning">
-          <span ng-click="$ctrl.pageUp($event)">上一页</span><span ng-repeat="page in $ctrl.pagination" class="{{page == $ctrl.pageInfo.pageNo? 'cur' : ''}}" ng-click='$ctrl.ngPageGo($event)'>{{page}}</span><span ng-click="$ctrl.ngPageDown($event)">下一页</span>
+          <span ng-click="$ctrl.ngPageUp()">上一页</span><span ng-repeat="page in $ctrl.pagination" class="{{page == $ctrl.pageNumber? 'cur' : ''}}" ng-click='$ctrl.goDetailPage(page)'>{{page}}</span><span ng-click="$ctrl.ngPageDown()">下一页</span>
         </div>
       </div>
   </div>
