@@ -12,7 +12,6 @@ class NewAccountController {
     this.sex = 'M' // M:男
     this.ngDialog = ngDialog
     this.$state = $state
-    this.defaultCommissioner = ''
   }
 
   $onInit() {
@@ -24,7 +23,7 @@ class NewAccountController {
     this.NewAccountService.getDefaultCommissioner().then((res) =>{
       if(!res.data) return
       console.log(res);
-      this.defaultCommissioner = res.data.data.name
+      this.healthperson = res.data.data.name
     })
   }
 

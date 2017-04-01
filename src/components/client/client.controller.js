@@ -1,5 +1,5 @@
 import storage from '../../utils/storage'
-
+import tools from '../../utils/tools'
 class ClientController {
   constructor(ClientService, $stateParams, $rootScope,$location) {
     this.stateParams = $stateParams
@@ -20,6 +20,7 @@ class ClientController {
       if(!res.data) return
       if(res.data.success) {
         this.list = res.data.data.result
+       this.pagination = tools.ngSelPage(res)
       }
 
     })

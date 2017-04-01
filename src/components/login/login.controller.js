@@ -46,7 +46,7 @@ class LoginController {
       storage.remove('ywLogin')
     }
 
-    var loginParam = '?userName=' + this.LoginName + '&pasword=' + md5(this.password)
+    var loginParam = '?userName=' + this.LoginName + '&password=' + md5(this.password)
 
     this.AccountService.login(loginParam)
       .then((res) => {

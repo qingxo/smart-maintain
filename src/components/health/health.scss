@@ -2,6 +2,10 @@
   background-color: white;
   min-height: 900px;
   border-radius: 5px;
+  .defalutComm{
+    text-align: left;
+    padding: 20px 0;
+  }
   .head-tips{
     height:55px;
     line-height: 55px;
@@ -12,6 +16,7 @@
     }
     border-bottom: 1px solid #cccccc;
   }
+
   .detail-content{
     text-align: center;
     .detailform{

@@ -7,7 +7,7 @@ class AccountService {
   }
 
   login(data) {
-    return this.$http.get('api/web/login' + data)
+    return this.$http.post('api/web/login' + data)
   }
 
   isLogin() {

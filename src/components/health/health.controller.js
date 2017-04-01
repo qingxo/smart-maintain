@@ -11,18 +11,19 @@ class HealthController {
     this.pageSize = 10
     this.pageNum = 1
     this.list = []
+    this.defalutPerson = {}
   }
 
   $onInit() {
     $('span[href="'+this.$location.url()+'"]').parent('li').addClass('flag')
     this.healthList('?pageSize='+this.pageSize+'&pageNum='+this.pageNum)
+    this.geDefaultPerson()
   }
 
   healthList(data) {
     this.HealthService.healthList(data).then((res) =>{
       if(!res.data) return
       if(res.data.success) {
-        console.log(res.data.data.result);
         this.list = res.data.data.result
       }
 
@@ -48,18 +49,24 @@ class HealthController {
     }
   }
 
+  geDefaultPerson() {
+    this.HealthService.getDefaultCommissioner().then((res) =>{
+      this.defalutPerson = res.data.data
+      console.log(this.defalutPerson);
+    })
+  }
+
   //刷新list数据
   refreshList(id) {
-    console.log("before:",this.list);
     for(var item in this.list) {
       if(this.list[item].userId === id) {
-        console.log(this.list[item]);
         this.list[item].isDefaultCommissioner = '1';
+        this.defalutPerson = this.list[item]
+        console.log(this.defalutPerson);
       }else{
           this.list[item].isDefaultCommissioner = '0';
       }
     }
-    console.log(this.list);
   }
 
   tips(data) {

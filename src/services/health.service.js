@@ -18,6 +18,10 @@ class HealthService{
     return this.$http.post('api/account/setDefaultCommissioner/'+id)
   }
 
+  getDefaultCommissioner() {
+    return this.$http.post('api/account/getDefaultCommissioner')
+  }
+
 }
 HealthService.$inject = ['$http','$state']
 export default HealthService

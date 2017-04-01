@@ -27,7 +27,7 @@ class NewHealthController {
       "name":this.realname,
       "mobile":this.mobile,
       "userName":this.userName,
-      "secret":this.pwd,
+      "secret":md5(this.pwd),
       "sex":this.sex,
       "birdthday":this.birdthday,
       "mail":this.email,
