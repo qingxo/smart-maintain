@@ -10,6 +10,14 @@ class NewHealthService{
     return this.$http.post('api/account/add',storage.serialize(data))
   }
 
+  editHealth(data) {
+    return this.$http.post('api/account/modify',storage.serialize(data))
+  }
+
+  personInfo(userId) {
+    return this.$http.post('api/account/detail/'+userId)
+  }
+
 }
 NewHealthService.$inject = ['$http','$state']
 export default NewHealthService

@@ -1,6 +1,6 @@
 <div class="right-content">
   <div class="head-tips">
-      <span class=tips-info>新建健康管理管理账号</span>
+      <span class=tips-info>新建/编辑 健康管理管理账号</span>
   </div>
   <div class="detail-content">
     <div class="detailform">
@@ -31,7 +31,7 @@
           <input type="text" name="" value="" ng-model="$ctrl.userName">
         </div>
       </div>
-      <div class="line">
+      <div class="line" ng-show="{{!!this.userId}}">
         <label for="">密码*</label>
         <div class="inline">
           <input type="text" name="" value="" ng-model="$ctrl.pwd">

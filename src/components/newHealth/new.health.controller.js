@@ -16,6 +16,28 @@ class NewHealthController {
 
   $onInit() {
     $('span[href="'+this.$location.url()+'"]').parent('li').addClass('flag')
+    this.userId = this.$location.search().userId
+    if(this.userId) {
+      this.editModule()
+    }
+  }
+
+  editModule() {
+    this.NewHealthService.personInfo(this.userId).then((res) => {
+      if(!res.data) return
+      if(res.data.success) {
+        let info = res.data.data
+        console.log(info);
+        this.realname = info.name
+        this.mobile = info.mobile
+        this.sex = info.sex
+        this.userName = info.userName
+        this.email = info.mail
+        this.address = info.address
+        this.remark = info.remark
+        this.pwd = info.secret
+      }
+    })
   }
 
   save() {
@@ -32,18 +54,34 @@ class NewHealthController {
       "birdthday":this.birdthday,
       "mail":this.email,
       "address":this.address,
-      "role":this.role
+      "role":this.role,
+      "remark":this.remark
     }
-    this.NewHealthService.saveHealth(data).then((res) =>{
-      console.log(res);
-        if(res.data.success) {
-          this.tips("新增成功")
-          this.$timeout(this.$state.go('home.health'),800)
+    if(this.userId){
+      data.userId = this.userId
+      delete data.secret
+      this.NewHealthService.editHealth(data).then((res) =>{
+          if(res.data.success) {
+            this.tips("编辑成功")
+            this.$timeout(this.$state.go('home.health'),800)
 
-        }else{
-          this.tips(res.data.errMsg)
-        }
-    })
+          }else{
+            this.tips(res.data.errMsg)
+          }
+      })
+    }else{
+      this.NewHealthService.saveHealth(data).then((res) =>{
+        console.log(res);
+          if(res.data.success) {
+            this.tips("新增成功")
+            this.$timeout(this.$state.go('home.health'),800)
+
+          }else{
+            this.tips(res.data.errMsg)
+          }
+      })
+    }
+
   }
 
   tips(data) {
