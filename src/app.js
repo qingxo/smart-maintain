@@ -8,7 +8,6 @@ import Common from './common'
 import Components from './components'
 import config from './config'
 import run from './run'
-import {DECORATE_NAME} from 'echarts-ng'
 import './app.scss'
 
 const AppModule = angular
@@ -16,7 +15,6 @@ const AppModule = angular
     uiRouter,
     ngSanitize,
     ngDialog,
-    DECORATE_NAME,
     datetimepicker,
     Common,
     Components
