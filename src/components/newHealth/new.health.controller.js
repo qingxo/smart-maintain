@@ -27,7 +27,6 @@ class NewHealthController {
       if(!res.data) return
       if(res.data.success) {
         let info = res.data.data
-        console.log(info);
         this.realname = info.name
         this.mobile = info.mobile
         this.sex = info.sex
@@ -41,10 +40,30 @@ class NewHealthController {
   }
 
   save() {
-    console.log(this.relationShip);
     var srcData = {}
     srcData.name = this.realname
     srcData = angular.toJson(srcData)
+
+
+    if(!this.realname) {
+      this.tips("姓名必填")
+      return
+    }
+
+    if(!this.mobile) {
+      this.tips("手机号必填")
+      return
+    }
+
+    if(!this.userName) {
+      this.tips("用户名必填")
+      return
+    }
+    if(!this.pwd) {
+      this.tips("密码必填")
+      return
+    }
+
     var data = {
       "name":this.realname,
       "mobile":this.mobile,
@@ -57,6 +76,8 @@ class NewHealthController {
       "role":this.role,
       "remark":this.remark
     }
+
+
     if(this.userId){
       data.userId = this.userId
       delete data.secret
