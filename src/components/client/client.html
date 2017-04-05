@@ -19,7 +19,7 @@
           <tbody>
             <tr ng-repeat="item in $ctrl.list">
               <td><span>{{item.name}}</span></td><td><span>{{item.mobile}}</span></td><td><span>{{item.sex === 'M' ? '男' : '女'}}</span></td><td><span>{{item.birdthday | date:'yyyy-MM-dd'}}</span></td>
-              <td><span>{{item.createDt | date:'yyyy-MM-dd'}}</span></td><td><span>{{item.commissionerUserId || '无'}}</span></td>
+              <td><span>{{item.createDt | date:'yyyy-MM-dd'}}</span></td><td><span>{{item.commissionerUserName || '无'}}</span></td>
               <td><span>{{item.equipmentNo || '未绑定'}}</span></td>
               <td><span>
                 <!-- <em>详情</em> <em>安排专员</em> -->
