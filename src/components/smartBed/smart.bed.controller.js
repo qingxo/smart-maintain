@@ -35,9 +35,10 @@ class SmartBedController {
       if(res.data.code == '200') {
         this.tips("绑定成功")
         this.$state.go('home.client')
+      }else if(res.data.code == '404'){
+        this.tips(res.data.errormsg)
       }else{
         this.tipsConfirm(res.data.errormsg)
-
       }
     })
   }
