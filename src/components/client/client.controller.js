@@ -69,6 +69,8 @@ class ClientController {
       if(res.data.success) {
         this.tips(res.data.data)
         item.equipmentNo = ''
+      }else{
+        this.tips(res.data.errormsg)
       }
     })
   }
