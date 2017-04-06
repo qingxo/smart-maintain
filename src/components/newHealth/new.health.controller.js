@@ -7,7 +7,7 @@ class NewHealthController {
     this.NewHealthService = NewHealthService
     this.$rootScope = $rootScope
     this.$location = $location
-    this.role = 2 //'默认为客户:0系统管理员 1平台管理员 2健康专员 3 客户
+    this.role = '2' //'默认为客户:0系统管理员 1平台管理员 2健康专员 3 客户
     this.sex = 'F' // M:男,F:女
     this.ngDialog = ngDialog
     this.$state = $state
@@ -20,6 +20,9 @@ class NewHealthController {
     if(this.userId) {
       this.editModule()
     }
+
+    this.isHealth = Boolean(this.stateParams.isHealth) | false
+    this.userId = this.stateParams.userId
   }
 
   editModule() {
@@ -35,6 +38,9 @@ class NewHealthController {
         this.address = info.address
         this.remark = info.remark
         this.pwd = info.secret
+        if(info.role) {
+          this.role = info.role
+        }
       }
     })
   }
@@ -84,7 +90,11 @@ class NewHealthController {
       this.NewHealthService.editHealth(data).then((res) =>{
           if(res.data.success) {
             this.tips("编辑成功")
-            this.$timeout(this.$state.go('home.health'),800)
+            if(this.isHealth){
+              this.$timeout(this.$state.go('home.health'),800)
+            }else{
+              this.$timeout(this.$state.go('home.accounts'),800)
+            }
 
           }else{
             this.tips(res.data.errMsg)
@@ -95,7 +105,11 @@ class NewHealthController {
         console.log(res);
           if(res.data.success) {
             this.tips("新增成功")
-            this.$timeout(this.$state.go('home.health'),800)
+            if(this.isHealth){
+              this.$timeout(this.$state.go('home.health'),800)
+            }else{
+              this.$timeout(this.$state.go('home.accounts'),800)
+            }
 
           }else{
             this.tips(res.data.errMsg)

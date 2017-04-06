@@ -58,7 +58,6 @@ class HealthController {
   geDefaultPerson() {
     this.HealthService.getDefaultCommissioner().then((res) =>{
       this.defalutPerson = res.data.data
-      console.log(this.defalutPerson);
     })
   }
 
@@ -68,7 +67,6 @@ class HealthController {
       if(this.list[item].userId === id) {
         this.list[item].isDefaultCommissioner = '1';
         this.defalutPerson = this.list[item]
-        console.log(this.defalutPerson);
       }else{
           this.list[item].isDefaultCommissioner = '0';
       }

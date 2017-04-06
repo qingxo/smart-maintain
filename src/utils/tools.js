@@ -4,11 +4,9 @@ class Tools{
     }
 
     ngSelPage(res) {
-        console.log(res);
             this.arrayList = res.data.data.result
             this.lastPageNumber = res.data.data.lastPageNumber
             this.currentPage = res.data.data.pageNumber
-            console.log(this.lastPageNumber);
             let i = 1;
             if(this.lastPageNumber<10) {
               for(i = 1 ;i<=this.lastPageNumber;i++) {

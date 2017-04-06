@@ -7,7 +7,7 @@
       <div class="lf">
         <input type="text" name="" placeholder="查找" value=""><span>查找</span>
       </div>
-      <div class="new rf" ui-sref="home.create">
+      <div class="new rf" ui-sref="home.create({'isHealth':true})">
         新增健康服务专员
       </div>
     </div>
@@ -24,7 +24,7 @@
             <td><span>{{item.userName}}</span></td><td><span>{{item.name}}</span></td><td><span>{{item.mobile}}</span></td><td><span>{{item.mail}}</span></td>
             <td><span>{{item.num}}</span></td>
             <td><span>
-               <em ui-sref="home.create({'userId':item.userId})">编辑</em> <em ng-click="$ctrl.del(item.userId)">删除</em>
+               <em ui-sref="home.create({'userId':item.userId,'isHealth':true})">编辑</em> <em ng-click="$ctrl.del(item.userId)">删除</em>
                <em   class="show-{{item.isDefaultCommissioner}}"  ng-click="$ctrl.defaultTips(item.userId)">设置为默认专员</em>
             </span></td>
           </tr>
