@@ -16,7 +16,31 @@ class NewAccountController {
 
   $onInit() {
     $('span[href="'+this.$location.url()+'"]').parent('li').addClass('flag')
+    this.isEdit = this.stateParams.isEdit
+    if(this.isEdit) {
+      this.userId = this.stateParams.userId
+      this.initData()
+    }
     this.getDefaultCommissioner()
+  }
+
+  initData() {
+    this.NewAccountService.personInfo(this.userId).then((res) => {
+      if(!res.data) return
+      if(res.data.success) {
+        let info = res.data.data
+        this.realname = info.name
+        this.mobile = info.mobile
+        this.sex = info.sex
+        this.userName = info.userName
+        this.email = info.mail
+        this.address = info.address
+        this.remark = info.remark
+        if(info.role) {
+          this.role = info.role
+        }
+      }
+    })
   }
 
   getDefaultCommissioner() {
@@ -45,15 +69,29 @@ class NewAccountController {
       "relationToCustomer":this.relationShip,
       "role":this.role
     }
-    this.NewAccountService.saveClient(data).then((res) =>{
-      console.log(res);
-        if(res.data.success) {
-          this.tips("新增成功")
-          this.$state.go('home.client')
-        }else{
-          this.tips(res.data.errMsg)
-        }
-    })
+    if(this.isEdit){
+      data.customerId = this.userId
+      this.NewAccountService.editClient(data).then((res) =>{
+        console.log(res);
+          if(res.data.success) {
+            this.tips("编辑成功")
+            this.$state.go('home.client')
+          }else{
+            this.tips(res.data.errMsg)
+          }
+      })
+    }else{
+      this.NewAccountService.saveClient(data).then((res) =>{
+        console.log(res);
+          if(res.data.success) {
+            this.tips("新增成功")
+            this.$state.go('home.client')
+          }else{
+            this.tips(res.data.errMsg)
+          }
+      })
+    }
+
   }
 
   tips(data) {
@@ -63,9 +101,6 @@ class NewAccountController {
       closeByDocument: false,
       closeByEscape: true
     })
-    // setTimeout(function () {
-    //   this.dialog2.close()
-    // }, 1500)
   }
 
 }
