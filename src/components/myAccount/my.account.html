@@ -6,9 +6,9 @@
     <div class="detailform">
       <div class="line">
         <label for="">账户角色*</label><div class="inline">
-          <input type='checkbox' value="globalmanager" ng-model="$ctrl.glo" /><label for="">系统管理员</label>
-          <input type='checkbox' value="systemmanager" ng-model="$ctrl.sys" /><label for="">平台管理员</label>
-          <input type='checkbox' value="healthmanager" ng-model="$ctrl.hel" /><label for="">健康服务专员</label>
+          <input type='radio' value="0" name="sys" ng-model="$ctrl.role" /><label for="">系统管理员</label>
+          <input type='radio' value="1" name="sys" ng-model="$ctrl.role" /><label for="">平台管理员</label>
+          <input type='radio' value="2" name="sys" ng-model="$ctrl.role" /><label for="">健康服务专员</label>
         </div>
       </div>
       <div class="line">
@@ -32,12 +32,12 @@
         </div>
       </div>
 
-      <div class="line">
+      <!-- <div class="line">
         <label for="">密码*</label>
         <div class="inline">
           <input type="password" name="" value="" ng-model="$ctrl.pwd">
         </div>
-      </div>
+      </div> -->
 
       <div class="line">
         <label for="">邮箱</label>
@@ -48,14 +48,14 @@
       <div class="line">
         <label for="">性别</label>
         <div class="inline">
-          <input type="radio" name="sex" value="male" ng-model="$ctrl.sex"><label for="">男</label>
-          <input type="radio" name="sex" value="female" ng-model="$ctrl.sex"><label for="">女</label>
+          <input type="radio" name="sex" value="M" ng-model="$ctrl.sex"><label for="">男</label>
+          <input type="radio" name="sex" value="F" ng-model="$ctrl.sex"><label for="">女</label>
         </div>
       </div>
       <div class="line">
         <label for="">生日</label>
         <div class="inline">
-          <input type="text" name="" value="" ng-model="$ctrl.time">
+          <input type="text" name="" value="" ng-model="$ctrl.birdthday">
         </div>
       </div>
       <div class="line">

@@ -51,12 +51,10 @@ class LoginController {
     this.AccountService.login(loginParam)
       .then((res) => {
         if (!res.data) return
-        console.log('code:' + res.data.code)
         if (0 !== parseInt(res.data.code)) {
           this.errormsg = res.data.msg
           this.loginErr = true
         }
-        console.log('the back' + res)
 
         const userData = res.data.data
         if (userData) {
@@ -72,7 +70,7 @@ class LoginController {
 
           localData = Object.assign({}, localData, {token: token, sessionKey: sessionKey})
           storage.set('state', localData)
-          this.$state.go('home.health')
+          this.$state.go('home.myaccount',{'userId':res.data.data.userId})
           var myView = document.getElementById('myView')
           myView.style.maxWidth = '1600px'
         }

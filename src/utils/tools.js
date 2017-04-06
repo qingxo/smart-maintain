@@ -48,13 +48,6 @@ class Tools{
       console.log(this.pageInfo);
     }
 
-    ngPageUp() {
-        console.log('pageup');
-    }
-
-    ngPageDown() {
-      console.log("pagedown");
-    }
 }
 
 export default new Tools()
