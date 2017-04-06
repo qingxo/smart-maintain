@@ -59,6 +59,9 @@ class ClientController {
       closeByDocument: false,
       closeByEscape: true
     })
+    setTimeout(() =>{
+      dialog2.close()
+    },1200)
   }
 
   unBinding(customerId,equipId,item) {
