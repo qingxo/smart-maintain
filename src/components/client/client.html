@@ -22,7 +22,8 @@
               <td><span>{{item.createDt | date:'yyyy-MM-dd'}}</span></td><td><span>{{item.commissionerUserName || '无'}}</span></td>
               <td><span>{{item.equipmentNo || '未绑定'}}</span></td>
               <td><span>
-                 <em ui-sref="home.newaccount({'isEdit':true,'userId':item.commissionerUserId})">详情</em> <em>安排专员</em>
+                 <em ui-sref="home.newaccount({'isEdit':true,'userId':item.customerId})">详情</em>
+                 <em ui-sref="home.healthcare({'customerId':item.customerId,'mobile':item.mobile,'name':item.name})">安排专员</em>
 
                 <em class="ng-class:{true:'active',false:'inactive'}[!item.equipmentNo]"   ui-sref="home.smartBed({'customerId':item.customerId,'mobile':item.mobile,'name':item.name})">绑定设备</em>
                 <em class="ng-class:{true:'active',false:'inactive'}[!!item.equipmentNo]"   ng-click="$ctrl.cancelSmartBed(item.customerId,item.equipmentNo,item)">取消绑定</em>
