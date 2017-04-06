@@ -7,7 +7,8 @@ import ClientModule from './client'
 import NewAccountModule from './newAccount'
 import HealthModule from './health'
 import SmartBedModule from './smartBed'
-import NewHealth from './newHealth'
+import NewHealthModule from './newHealth'
+import HealthCareModule from './healthCare'
 const Components = angular
   .module('app.components', [
     LoginModule,
@@ -18,7 +19,8 @@ const Components = angular
     NewAccountModule,
     HealthModule,
     SmartBedModule,
-    NewHealth
+    NewHealthModule,
+    HealthCareModule
   ])
   .name
 
