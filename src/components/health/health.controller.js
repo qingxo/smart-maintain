@@ -18,7 +18,7 @@ class HealthController {
 
   $onInit() {
     $('span[href="'+this.$location.url()+'"]').parent('li').addClass('flag')
-    this.healthList('?pageSize='+this.pageSize+'&pageNum='+this.pageNumber)
+    this.healthList('?pageSize='+this.pageSize+'&pageNum='+this.pageNumber+'&role=2')
     this.geDefaultPerson()
   }
 
@@ -114,20 +114,20 @@ class HealthController {
   }
 
   goDetailPage(num) {
-    this.healthList('?pageSize='+this.pageSize+"&pageNum="+num)
+    this.healthList('?pageSize='+this.pageSize+"&pageNum="+num+"&role=2")
   }
 
   ngPageUp() {
     if(this.pageNumber!=1){
        --this.pageNumber
-      this.healthList('?pageSize='+this.pageSize+"&pageNum="+this.pageNumber)
+      this.healthList('?pageSize='+this.pageSize+"&pageNum="+this.pageNumber+"&role=2")
     }
   }
 
   ngPageDown() {
     if(!this.lastPage){
       ++this.pageNumber
-      this.healthList('?pageSize='+this.pageSize+"&pageNum="+this.pageNumber)
+      this.healthList('?pageSize='+this.pageSize+"&pageNum="+this.pageNumber+"&role=2")
     }
   }
 
