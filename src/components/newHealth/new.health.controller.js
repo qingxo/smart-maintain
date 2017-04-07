@@ -117,14 +117,14 @@ class NewHealthController {
   }
 
   tips(data) {
-    var dialog2 = this.ngDialog.open({
+    var dialog = this.ngDialog.open({
       template: '<p style=" text-align:center" class="del-data-message">' + data + '</p>',
       plain: true,
       closeByDocument: false,
       closeByEscape: true
     })
-    setTimeout(function () {
-      this.dialog2.close()
+    setTimeout(() =>{
+      dialog.close()
     }, 1500)
   }
 
