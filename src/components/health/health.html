@@ -5,7 +5,7 @@
   <div class="detail-content">
     <div class="highline">
       <div class="lf">
-        <input type="text" name="" placeholder="查找" value=""><span>查找</span>
+        <input type="text" name="" ng-keydown="$ctrl.search($event)" placeholder="请输入姓名、手机号" value="" ng-model="$ctrl.queryInfo"><span ng-click="$ctrl.searchInfo()">查找</span>
       </div>
       <div class="new rf" ui-sref="home.create({'isHealth':true})">
         新增健康服务专员

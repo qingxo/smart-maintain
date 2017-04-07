@@ -51,9 +51,9 @@ class LoginController {
     this.AccountService.login(loginParam)
       .then((res) => {
         if (!res.data) return
-        if (0 !== parseInt(res.data.code)) {
-          this.errormsg = res.data.msg
-          this.loginErr = true
+        if(!res.data.success) {
+          this.errormsg = res.data.errMsg
+          return
         }
 
         const userData = res.data.data

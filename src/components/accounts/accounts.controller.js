@@ -57,7 +57,19 @@ class AccountsController {
     })
   }
 
-  save() {
+  searchInfo() {
+      this.pageNum = 1
+    if(this.queryInfo) {
+        this.accountsList("?pageSize="+this.pageSize+"&pageNum="+this.pageNum+"&query="+this.queryInfo)
+    }else{
+      this.accountsList("?pageSize="+this.pageSize+"&pageNum="+this.pageNum)
+    }
+
+  }
+  search(e) {
+    if(e.keyCode === 13) {
+      this.searchInfo()
+    }
   }
 
 }

@@ -97,6 +97,21 @@ class ClientController {
     }
   }
 
+  searchInfo() {
+      this.pageNumber = 1
+    if(this.queryInfo) {
+      this.clientList('?pageSize='+this.pageSize+'&pageNum='+this.pageNumber+'&role=2'+"&query="+this.queryInfo)
+    }else{
+      this.clientList('?pageSize='+this.pageSize+'&pageNum='+this.pageNumber+'&role=2')
+    }
+
+  }
+  search(e) {
+    if(e.keyCode === 13) {
+      this.searchInfo()
+    }
+  }
+
 }
 ClientController.$inject = ['ClientService', '$stateParams', '$rootScope','$location','ngDialog']
 export default ClientController

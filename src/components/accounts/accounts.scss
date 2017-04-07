@@ -14,10 +14,12 @@
   }
   .detail-content{
     text-align: center;
-    .detailform{
-      width:100%;
-      margin:20px auto;
-
+    .highline{
+      .lf{
+        span{
+          cursor: pointer;
+        }
+      }
     }
 
   }

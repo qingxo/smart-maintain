@@ -129,6 +129,21 @@ class HealthController {
     }
   }
 
+  searchInfo() {
+      this.pageNumber = 1
+    if(this.queryInfo) {
+      this.healthList('?pageSize='+this.pageSize+'&pageNum='+this.pageNumber+'&role=2'+"&query="+this.queryInfo)
+    }else{
+      this.healthList('?pageSize='+this.pageSize+'&pageNum='+this.pageNumber+'&role=2')
+    }
+
+  }
+  search(e) {
+    if(e.keyCode === 13) {
+      this.searchInfo()
+    }
+  }
+
 
 }
 HealthController.$inject = ['HealthService', '$stateParams', '$rootScope','$location','ngDialog']
