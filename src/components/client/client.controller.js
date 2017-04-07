@@ -36,12 +36,12 @@ class ClientController {
   cancelSmartBed(customerId, equipId, item) {
     let self = this
     var dialog = this.ngDialog.openConfirm({
-      template: '\
-                <p>确认解除绑定?</p>\
-                <div class="ngdialog-buttons">\
-                    <button type="button" class="ngdialog-button ngdialog-button-secondary" ng-click="closeThisDialog(0)">取消</button>\
-                    <button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="confirm(1)">确认</button>\
-                </div>',
+      template: `\
+                <p>确认解除绑定?</p>
+                <div class="ngdialog-buttons">
+                    <button type="button" class="ngdialog-button ngdialog-button-secondary" ng-click="closeThisDialog(0)">取消</button>
+                    <button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="confirm(1)">确认</button>
+                </div>`,
       plain: true,
       closeByDocument: false,
       closeByEscape: true
@@ -83,7 +83,7 @@ class ClientController {
   }
 
   ngPageUp() {
-    if (this.pageNumber != 1) {
+    if (this.pageNumber !== 1) {
       --this.pageNumber
       this.clientList('?pageSize=' + this.pageSize + '&pageNum=' + this.pageNumber)
     }

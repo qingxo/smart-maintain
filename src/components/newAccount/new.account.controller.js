@@ -46,13 +46,11 @@ class NewAccountController {
   getDefaultCommissioner() {
     this.NewAccountService.getDefaultCommissioner().then((res) => {
       if (!res.data) return
-      console.log(res)
       this.healthperson = res.data.data.name
     })
   }
 
   save() {
-    console.log(this.relationShip)
     var srcData = {}
     srcData.name = this.realname
     srcData = angular.toJson(srcData)
@@ -72,7 +70,6 @@ class NewAccountController {
     if (this.isEdit) {
       data.customerId = this.userId
       this.NewAccountService.editClient(data).then((res) => {
-        console.log(res)
         if (res.data.success) {
           this.tips('编辑成功')
           this.$state.go('home.client')
@@ -82,7 +79,6 @@ class NewAccountController {
       })
     } else {
       this.NewAccountService.saveClient(data).then((res) => {
-        console.log(res)
         if (res.data.success) {
           this.tips('新增成功')
           this.$state.go('home.client')

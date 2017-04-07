@@ -45,7 +45,7 @@ class Storage {
           fullSubName = name + '[' + i + ']'
           innerObj = {}
           innerObj[fullSubName] = subValue
-          query += param(innerObj) + '&'
+          query += this.serialize(innerObj) + '&'
         }
       } else if (value instanceof Object) {
         for (subName in value) {
@@ -53,7 +53,7 @@ class Storage {
           fullSubName = name + '[' + subName + ']'
           innerObj = {}
           innerObj[fullSubName] = subValue
-          query += serialize(innerObj) + '&'
+          query += this.serialize(innerObj) + '&'
         }
       } else if (value !== undefined && value !== null)
         {query += encodeURIComponent(name) + '=' + encodeURIComponent(value) + '&'}

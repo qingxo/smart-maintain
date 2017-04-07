@@ -100,7 +100,6 @@ class NewHealthController {
       })
     } else {
       this.NewHealthService.saveHealth(data).then((res) => {
-        console.log(res)
         if (res.data.success) {
           this.tips('新增成功')
           if (this.isHealth) {
