@@ -1,18 +1,18 @@
 import storage from '../utils/storage'
 
-class AccountsService{
+class AccountsService {
   constructor($http, $state) {
     this.$http = $http
     this.$state = $state
   }
 
   delPerson(data) {
-    return this.$http.post('api/account/delete/'+data)
+    return this.$http.post('api/account/delete/' + data)
   }
 
   accountsList(data) {
-    return this.$http.post('api/account/listByPage'+data)
+    return this.$http.post('api/account/listByPage' + data)
   }
 }
-AccountsService.$inject = ['$http','$state']
+AccountsService.$inject = ['$http', '$state']
 export default AccountsService

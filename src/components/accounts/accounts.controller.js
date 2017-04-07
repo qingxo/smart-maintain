@@ -1,7 +1,7 @@
 import storage from '../../utils/storage'
 import tools from '../../utils/tools'
 class AccountsController {
-  constructor(AccountsService, $stateParams, $rootScope,$location,ngDialog) {
+  constructor(AccountsService, $stateParams, $rootScope, $location, ngDialog) {
     this.stateParams = $stateParams
     this.AccountsService = AccountsService
     this.$rootScope = $rootScope
@@ -12,38 +12,38 @@ class AccountsController {
   }
 
   $onInit() {
-    $('span[href="'+this.$location.url()+'"]').parent('li').addClass('flag')
-    this.accountsList("?pageSize="+this.pageSize+"&pageNum="+this.pageNum)
+    $('span[href="' + this.$location.url() + '"]').parent('li').addClass('flag')
+    this.accountsList('?pageSize=' + this.pageSize + '&pageNum=' + this.pageNum)
   }
 
   accountsList(data) {
-    this.AccountsService.accountsList(data).then((res) =>{
-      if(!res.data) return
-      if(res.data.success) {
+    this.AccountsService.accountsList(data).then((res) => {
+      if (!res.data) return
+      if (res.data.success) {
         this.list = res.data.data.result
         this.pagination = tools.ngSelPage(res)
         this.pageNumber = res.data.data.pageNumber
         this.lastPage = res.data.data.lastPage
-        this.morePage = res.data.data.totalCount>this.pageSize? true:false
+        this.morePage = res.data.data.totalCount > this.pageSize ? true : false
       }
     })
   }
 
   del(id) {
-    this.AccountsService.delPerson(id).then((res) =>{
-        if(!res.data) return
-        if(res.data.success) {
-          this.tips("删除成功")
-          this.delList(id)
-        }
+    this.AccountsService.delPerson(id).then((res) => {
+      if (!res.data) return
+      if (res.data.success) {
+        this.tips('删除成功')
+        this.delList(id)
+      }
     })
   }
 
-  //删除list中的数据
+  // 删除list中的数据
   delList(id) {
-    for(var item in this.list) {
-      if(this.list[item].userId === id) {
-        this.list.splice(item,1);
+    for (var item in this.list) {
+      if (this.list[item].userId === id) {
+        this.list.splice(item, 1)
       }
     }
   }
@@ -58,20 +58,20 @@ class AccountsController {
   }
 
   searchInfo() {
-      this.pageNum = 1
-    if(this.queryInfo) {
-        this.accountsList("?pageSize="+this.pageSize+"&pageNum="+this.pageNum+"&query="+this.queryInfo)
-    }else{
-      this.accountsList("?pageSize="+this.pageSize+"&pageNum="+this.pageNum)
+    this.pageNum = 1
+    if (this.queryInfo) {
+      this.accountsList('?pageSize=' + this.pageSize + '&pageNum=' + this.pageNum + '&query=' + this.queryInfo)
+    } else {
+      this.accountsList('?pageSize=' + this.pageSize + '&pageNum=' + this.pageNum)
     }
 
   }
   search(e) {
-    if(e.keyCode === 13) {
+    if (e.keyCode === 13) {
       this.searchInfo()
     }
   }
 
 }
-AccountsController.$inject = ['AccountsService', '$stateParams', '$rootScope','$location','ngDialog']
+AccountsController.$inject = ['AccountsService', '$stateParams', '$rootScope', '$location', 'ngDialog']
 export default AccountsController

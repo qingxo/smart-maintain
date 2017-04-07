@@ -14,7 +14,7 @@ class LoginController {
   $onInit() {
     var myView = document.getElementById('myView')
     myView.style.maxWidth = 'none'
-    if(storage.get('ywLogin')){
+    if (storage.get('ywLogin')) {
       this.rememberPWD = true
       this.LoginName = storage.get('ywLogin').userName
       this.password = window.atob(storage.get('ywLogin').pwd)
@@ -39,10 +39,10 @@ class LoginController {
       return
     }
 
-    if(this.rememberPWD){
-        let data = {'userName':this.LoginName,'password':window.btoa(this.password)}
-        storage.set('ywLogin',data)
-    }else{
+    if (this.rememberPWD) {
+      let data = {'userName': this.LoginName, 'password': window.btoa(this.password)}
+      storage.set('ywLogin', data)
+    } else {
       storage.remove('ywLogin')
     }
 
@@ -51,7 +51,7 @@ class LoginController {
     this.AccountService.login(loginParam)
       .then((res) => {
         if (!res.data) return
-        if(!res.data.success) {
+        if (!res.data.success) {
           this.errormsg = res.data.errMsg
           return
         }
@@ -70,7 +70,7 @@ class LoginController {
 
           localData = Object.assign({}, localData, {token: token, sessionKey: sessionKey})
           storage.set('state', localData)
-          this.$state.go('home.myaccount',{'userId':res.data.data.userId})
+          this.$state.go('home.myaccount', {'userId': res.data.data.userId})
           var myView = document.getElementById('myView')
           myView.style.maxWidth = '1600px'
         }

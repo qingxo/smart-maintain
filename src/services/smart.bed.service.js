@@ -1,6 +1,6 @@
 import storage from '../utils/storage'
 
-class SmartBedService{
+class SmartBedService {
   constructor($http, $state) {
     this.$http = $http
     this.$state = $state
@@ -11,11 +11,11 @@ class SmartBedService{
   }
 
   save(data) {
-    return this.$http.post('api/customer/bunding',storage.serialize(data))
+    return this.$http.post('api/customer/bunding', storage.serialize(data))
   }
 
   reBunding(data) {
-    return this.$http.post('api/customer/rebunding',storage.serialize(data))
+    return this.$http.post('api/customer/rebunding', storage.serialize(data))
   }
 }
 SmartBedService.$inject = ['$http', '$state']

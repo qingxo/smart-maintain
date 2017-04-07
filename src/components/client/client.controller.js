@@ -1,7 +1,7 @@
 import storage from '../../utils/storage'
 import tools from '../../utils/tools'
 class ClientController {
-  constructor(ClientService, $stateParams, $rootScope,$location,ngDialog) {
+  constructor(ClientService, $stateParams, $rootScope, $location, ngDialog) {
     this.stateParams = $stateParams
     this.ClientService = ClientService
     this.$rootScope = $rootScope
@@ -14,29 +14,29 @@ class ClientController {
   }
 
   $onInit() {
-    $('span[href="'+this.$location.url()+'"]').parent('li').addClass('flag')
-    this.clientList('?pageSize='+this.pageSize+"&pageNum="+this.pageNumber)
+    $('span[href="' + this.$location.url() + '"]').parent('li').addClass('flag')
+    this.clientList('?pageSize=' + this.pageSize + '&pageNum=' + this.pageNumber)
   }
 
   clientList(data) {
-    this.ClientService.clientList(data).then((res)=>{
-      if(!res.data) return
-      if(res.data.success) {
+    this.ClientService.clientList(data).then((res) => {
+      if (!res.data) return
+      if (res.data.success) {
         this.list = res.data.data.result
         this.pagination = tools.ngSelPage(res)
         this.pageNumber = res.data.data.pageNumber
         this.lastPage = res.data.data.lastPage
-        this.morePage = res.data.data.totalCount>this.pageSize? true:false
+        this.morePage = res.data.data.totalCount > this.pageSize ? true : false
 
       }
 
     })
   }
 
-  cancelSmartBed(customerId,equipId,item) {
+  cancelSmartBed(customerId, equipId, item) {
     let self = this
     var dialog = this.ngDialog.openConfirm({
-      template:'\
+      template: '\
                 <p>确认解除绑定?</p>\
                 <div class="ngdialog-buttons">\
                     <button type="button" class="ngdialog-button ngdialog-button-secondary" ng-click="closeThisDialog(0)">取消</button>\
@@ -45,10 +45,10 @@ class ClientController {
       plain: true,
       closeByDocument: false,
       closeByEscape: true
-    }).then(function(data){
-      self.unBinding(customerId,equipId,item)
-    },function(data){
-      console.log("no");
+    }).then(function (data) {
+      self.unBinding(customerId, equipId, item)
+    }, function (data) {
+      console.log('no')
     })
   }
 
@@ -59,59 +59,58 @@ class ClientController {
       closeByDocument: false,
       closeByEscape: true
     })
-    setTimeout(() =>{
+    setTimeout(() => {
       dialog2.close()
-    },1200)
+    }, 1200)
   }
 
-  unBinding(customerId,equipId,item) {
-    var data ='?customerId='+customerId+'&equipmentNo='+equipId
+  unBinding(customerId, equipId, item) {
+    var data = '?customerId=' + customerId + '&equipmentNo=' + equipId
 
-    this.ClientService.unbind(data).then((res) =>{
-      if(!res.data) return
-      if(res.data.success) {
+    this.ClientService.unbind(data).then((res) => {
+      if (!res.data) return
+      if (res.data.success) {
         this.tips(res.data.data)
         item.equipmentNo = ''
-      }else{
+      } else {
         this.tips(res.data.errormsg)
       }
     })
   }
 
-
   goDetailPage(num) {
-    this.clientList('?pageSize='+this.pageSize+"&pageNum="+num)
+    this.clientList('?pageSize=' + this.pageSize + '&pageNum=' + num)
   }
 
   ngPageUp() {
-    if(this.pageNumber!=1){
-       --this.pageNumber
-      this.clientList('?pageSize='+this.pageSize+"&pageNum="+this.pageNumber)
+    if (this.pageNumber != 1) {
+      --this.pageNumber
+      this.clientList('?pageSize=' + this.pageSize + '&pageNum=' + this.pageNumber)
     }
   }
 
   ngPageDown() {
-    if(!this.lastPage){
+    if (!this.lastPage) {
       ++this.pageNumber
-      this.clientList('?pageSize='+this.pageSize+"&pageNum="+this.pageNumber)
+      this.clientList('?pageSize=' + this.pageSize + '&pageNum=' + this.pageNumber)
     }
   }
 
   searchInfo() {
-      this.pageNumber = 1
-    if(this.queryInfo) {
-      this.clientList('?pageSize='+this.pageSize+'&pageNum='+this.pageNumber+'&role=2'+"&query="+this.queryInfo)
-    }else{
-      this.clientList('?pageSize='+this.pageSize+'&pageNum='+this.pageNumber+'&role=2')
+    this.pageNumber = 1
+    if (this.queryInfo) {
+      this.clientList('?pageSize=' + this.pageSize + '&pageNum=' + this.pageNumber + '&role=2' + '&query=' + this.queryInfo)
+    } else {
+      this.clientList('?pageSize=' + this.pageSize + '&pageNum=' + this.pageNumber + '&role=2')
     }
 
   }
   search(e) {
-    if(e.keyCode === 13) {
+    if (e.keyCode === 13) {
       this.searchInfo()
     }
   }
 
 }
-ClientController.$inject = ['ClientService', '$stateParams', '$rootScope','$location','ngDialog']
+ClientController.$inject = ['ClientService', '$stateParams', '$rootScope', '$location', 'ngDialog']
 export default ClientController

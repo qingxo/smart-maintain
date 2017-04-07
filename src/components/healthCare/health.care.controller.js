@@ -1,7 +1,7 @@
 import storage from '../../utils/storage'
 
 class HealthCareController {
-  constructor(HealthCareService, $stateParams, $rootScope,$location,ngDialog,$state) {
+  constructor(HealthCareService, $stateParams, $rootScope, $location, ngDialog, $state) {
     this.stateParams = $stateParams
     this.HealthCareService = HealthCareService
     this.$rootScope = $rootScope
@@ -21,9 +21,9 @@ class HealthCareController {
   }
 
   initHealthCarePerson() {
-    this.HealthCareService.healthList('?pageSize='+this.pageSize+"&pageNum="+this.pageNum+"&role=2").then((res)=>{
-      if(!res.data) return
-      if(res.data.success) {
+    this.HealthCareService.healthList('?pageSize=' + this.pageSize + '&pageNum=' + this.pageNum + '&role=2').then((res) => {
+      if (!res.data) return
+      if (res.data.success) {
         this.list = res.data.data.result
         this.healthCarePerson = res.data.data.result[0].userId
       }
@@ -32,16 +32,16 @@ class HealthCareController {
 
   save() {
     var data = {
-      "customerId":this.customerId,
-      "commissionerUserId":this.healthCarePerson,
+      'customerId': this.customerId,
+      'commissionerUserId': this.healthCarePerson
     }
-    this.HealthCareService.save(data).then((res)=>{
-      if(!res) return
-      if(res.data.success) {
-        this.tips("分配专员成功")
+    this.HealthCareService.save(data).then((res) => {
+      if (!res) return
+      if (res.data.success) {
+        this.tips('分配专员成功')
         this.$state.go('home.client')
-      }else{
-        this.tips("错误")
+      } else {
+        this.tips('错误')
       }
     })
   }
@@ -58,8 +58,8 @@ class HealthCareController {
   tipsConfirm(data) {
     let self = this
     var dialog = this.ngDialog.openConfirm({
-      template:'\
-                <p>'+data+'</p>\
+      template: '\
+                <p>' + data + '</p>\
                 <div class="ngdialog-buttons">\
                     <button type="button" class="ngdialog-button ngdialog-button-secondary" ng-click="closeThisDialog(0)">取消</button>\
                     <button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="confirm(1)">强制绑定</button>\
@@ -67,12 +67,12 @@ class HealthCareController {
       plain: true,
       closeByDocument: false,
       closeByEscape: true
-    }).then(function(data){
+    }).then(function (data) {
       self.reBunding()
-    },function(data){
-      console.log("no");
+    }, function (data) {
+      console.log('no')
     })
   }
 }
-HealthCareController.$inject = ['HealthCareService', '$stateParams', '$rootScope','$location','ngDialog','$state']
+HealthCareController.$inject = ['HealthCareService', '$stateParams', '$rootScope', '$location', 'ngDialog', '$state']
 export default HealthCareController

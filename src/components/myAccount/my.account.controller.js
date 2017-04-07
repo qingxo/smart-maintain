@@ -1,7 +1,7 @@
 import storage from '../../utils/storage'
 
 class MyAccountController {
-  constructor(MyAccountService, $stateParams, $rootScope,$location,ngDialog) {
+  constructor(MyAccountService, $stateParams, $rootScope, $location, ngDialog) {
     this.stateParams = $stateParams
     this.MyAccountService = MyAccountService
     this.$rootScope = $rootScope
@@ -10,7 +10,7 @@ class MyAccountController {
   }
 
   $onInit() {
-    $('span[href="'+this.$location.url()+'"]').parent('li').addClass('flag')
+    $('span[href="' + this.$location.url() + '"]').parent('li').addClass('flag')
     this.loadDetail()
   }
 
@@ -31,25 +31,25 @@ class MyAccountController {
 
   save() {
     var data = {
-      "name":this.realname,
-      "mobile":this.mobile,
-      "sex":this.sex,
-      "birdthday":this.birdthday,
-      "address":this.address,
-      "mail":this.email,
-      "remark":this.remark,
-      "role":this.role,
-      "userName":this.username,
-      "userId":this.userId
+      'name': this.realname,
+      'mobile': this.mobile,
+      'sex': this.sex,
+      'birdthday': this.birdthday,
+      'address': this.address,
+      'mail': this.email,
+      'remark': this.remark,
+      'role': this.role,
+      'userName': this.username,
+      'userId': this.userId
 
     }
 
-    this.MyAccountService.save(data).then((res) =>{
-      if(!res.data) return
-      if(res.data.success) {
-          storage.set('state',data)
-          this.tips("修改成功！")
-      }else{
+    this.MyAccountService.save(data).then((res) => {
+      if (!res.data) return
+      if (res.data.success) {
+        storage.set('state', data)
+        this.tips('修改成功！')
+      } else {
         this.tips(res.data.errMsg)
       }
     })
@@ -65,5 +65,5 @@ class MyAccountController {
   }
 
 }
-MyAccountController.$inject = ['MyAccountService', '$stateParams', '$rootScope','$location','ngDialog']
+MyAccountController.$inject = ['MyAccountService', '$stateParams', '$rootScope', '$location', 'ngDialog']
 export default MyAccountController

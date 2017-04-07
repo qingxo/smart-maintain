@@ -2,22 +2,22 @@ import storage from '../../utils/storage'
 import angular from 'angular'
 
 class NewAccountController {
-  constructor(NewAccountService, $stateParams, $rootScope,$location,ngDialog,$state) {
+  constructor(NewAccountService, $stateParams, $rootScope, $location, ngDialog, $state) {
     this.stateParams = $stateParams
     this.NewAccountService = NewAccountService
     this.$rootScope = $rootScope
     this.$location = $location
     this.relationShip = '0'
-    this.role = 3 //'默认为客户:0系统管理员 1平台管理员 2健康专员 3 客户
+    this.role = 3 // '默认为客户:0系统管理员 1平台管理员 2健康专员 3 客户
     this.sex = 'M' // M:男
     this.ngDialog = ngDialog
     this.$state = $state
   }
 
   $onInit() {
-    $('span[href="'+this.$location.url()+'"]').parent('li').addClass('flag')
+    $('span[href="' + this.$location.url() + '"]').parent('li').addClass('flag')
     this.isEdit = this.stateParams.isEdit
-    if(this.isEdit) {
+    if (this.isEdit) {
       this.userId = this.stateParams.userId
       this.initData()
     }
@@ -26,8 +26,8 @@ class NewAccountController {
 
   initData() {
     this.NewAccountService.personInfo(this.userId).then((res) => {
-      if(!res.data) return
-      if(res.data.success) {
+      if (!res.data) return
+      if (res.data.success) {
         let info = res.data.data
         this.realname = info.name
         this.mobile = info.mobile
@@ -36,7 +36,7 @@ class NewAccountController {
         this.email = info.mail
         this.address = info.address
         this.remark = info.remark
-        if(info.role) {
+        if (info.role) {
           this.role = info.role
         }
       }
@@ -44,51 +44,51 @@ class NewAccountController {
   }
 
   getDefaultCommissioner() {
-    this.NewAccountService.getDefaultCommissioner().then((res) =>{
-      if(!res.data) return
-      console.log(res);
+    this.NewAccountService.getDefaultCommissioner().then((res) => {
+      if (!res.data) return
+      console.log(res)
       this.healthperson = res.data.data.name
     })
   }
 
   save() {
-    console.log(this.relationShip);
+    console.log(this.relationShip)
     var srcData = {}
     srcData.name = this.realname
     srcData = angular.toJson(srcData)
     var data = {
-      "name":this.realname,
-      "mobile":this.mobile,
-      "sex":this.sex,
-      "birdthday":this.birdthday,
-      "height":this.height,
-      "weight":this.weight,
-      "address":this.address,
-      "guardianName":this.controlName,
-      "guardianMobile":this.controlMobile,
-      "relationToCustomer":this.relationShip,
-      "role":this.role
+      'name': this.realname,
+      'mobile': this.mobile,
+      'sex': this.sex,
+      'birdthday': this.birdthday,
+      'height': this.height,
+      'weight': this.weight,
+      'address': this.address,
+      'guardianName': this.controlName,
+      'guardianMobile': this.controlMobile,
+      'relationToCustomer': this.relationShip,
+      'role': this.role
     }
-    if(this.isEdit){
+    if (this.isEdit) {
       data.customerId = this.userId
-      this.NewAccountService.editClient(data).then((res) =>{
-        console.log(res);
-          if(res.data.success) {
-            this.tips("编辑成功")
-            this.$state.go('home.client')
-          }else{
-            this.tips(res.data.errMsg)
-          }
+      this.NewAccountService.editClient(data).then((res) => {
+        console.log(res)
+        if (res.data.success) {
+          this.tips('编辑成功')
+          this.$state.go('home.client')
+        } else {
+          this.tips(res.data.errMsg)
+        }
       })
-    }else{
-      this.NewAccountService.saveClient(data).then((res) =>{
-        console.log(res);
-          if(res.data.success) {
-            this.tips("新增成功")
-            this.$state.go('home.client')
-          }else{
-            this.tips(res.data.errMsg)
-          }
+    } else {
+      this.NewAccountService.saveClient(data).then((res) => {
+        console.log(res)
+        if (res.data.success) {
+          this.tips('新增成功')
+          this.$state.go('home.client')
+        } else {
+          this.tips(res.data.errMsg)
+        }
       })
     }
 
@@ -104,5 +104,5 @@ class NewAccountController {
   }
 
 }
-NewAccountController.$inject = ['NewAccountService', '$stateParams', '$rootScope','$location','ngDialog','$state']
+NewAccountController.$inject = ['NewAccountService', '$stateParams', '$rootScope', '$location', 'ngDialog', '$state']
 export default NewAccountController

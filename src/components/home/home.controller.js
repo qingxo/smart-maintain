@@ -1,6 +1,6 @@
 import storage from '../../utils/storage'
 class HomeController {
-  constructor(AccountService, $rootScope,$location,$state) {
+  constructor(AccountService, $rootScope, $location, $state) {
     this.AccountService = AccountService
     this.toggleLogOutFlag = true
     this.$rootScope = $rootScope
@@ -64,5 +64,5 @@ class HomeController {
   }
 
 }
-HomeController.$inject = ['AccountService', '$rootScope','$location','$state']
+HomeController.$inject = ['AccountService', '$rootScope', '$location', '$state']
 export default HomeController

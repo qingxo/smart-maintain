@@ -1,21 +1,21 @@
 import storage from '../utils/storage'
 
-class HealthService{
+class HealthService {
   constructor($http, $state) {
     this.$http = $http
     this.$state = $state
   }
 
   healthList(data) {
-    return this.$http.post('api/account/listByPage'+data)
+    return this.$http.post('api/account/listByPage' + data)
   }
 
   delPerson(data) {
-    return this.$http.post('api/account/delete/'+data)
+    return this.$http.post('api/account/delete/' + data)
   }
 
   defaultPerson(id) {
-    return this.$http.post('api/account/setDefaultCommissioner/'+id)
+    return this.$http.post('api/account/setDefaultCommissioner/' + id)
   }
 
   getDefaultCommissioner() {
@@ -23,5 +23,5 @@ class HealthService{
   }
 
 }
-HealthService.$inject = ['$http','$state']
+HealthService.$inject = ['$http', '$state']
 export default HealthService

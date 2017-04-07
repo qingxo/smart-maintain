@@ -4,8 +4,8 @@ import controller from './home.controller'
 const HomeComponent = {
   template,
   controller,
-  bindings:{
-    alarmCall:'='
+  bindings: {
+    alarmCall: '='
   }
 }
 
