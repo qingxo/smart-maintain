@@ -1,6 +1,6 @@
 import storage from '../../utils/storage'
 import angular from 'angular'
-
+import moment from 'moment'
 class NewHealthController {
   constructor(NewHealthService, $stateParams, $rootScope, $location, ngDialog, $state, $timeout) {
     this.stateParams = $stateParams
@@ -12,10 +12,15 @@ class NewHealthController {
     this.ngDialog = ngDialog
     this.$state = $state
     this.$timeout = $timeout
+    this.showCalendar = false
+    this.dateTimePickerConfig = {
+      minView: 'day'
+    }
   }
 
   $onInit() {
     $('span[href="' + this.$location.url() + '"]').parent('li').addClass('flag')
+    moment.locale('zh-cn')
     this.userId = this.$location.search().userId
     if (this.userId) {
       this.editModule()
@@ -38,6 +43,7 @@ class NewHealthController {
         this.address = info.address
         this.remark = info.remark
         this.pwd = info.secret
+        this.birdthday = info.birdthday
         if (info.role) {
           this.role = info.role
         }
@@ -126,6 +132,32 @@ class NewHealthController {
     setTimeout(() =>{
       dialog.close()
     }, 1500)
+  }
+
+  /**
+   * 打开日期选择器
+   *
+   * @memberOf BedSleepController
+   * @public
+   */
+  openCalendar() {
+    this.showCalendar = true
+    // this.$document.on('click', this.onDocumentClick.bind(this))
+  }
+
+
+  /**
+   * 选择日期
+   *
+   * @param {Date} date
+   *
+   * @memberOf BedSleepController
+   * @public
+   */
+  onSetTime(date) {
+    this.showCalendar = false
+
+    this.birdthday = moment(date).format('YYYY-MM-DD')
   }
 
 }
