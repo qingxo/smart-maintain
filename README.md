@@ -37,14 +37,14 @@ yarn install
 npm start
 ```
 
-浏览器打开 `http://localhost:8080` 进行调试
+浏览器打开 `http://localhost:8089` 进行调试
 
 ### build 打包
 
 ```
 npm run build
 ```
- 
+
 ### 布署
 
 将构建后的项目传至服务器，利用 pm2 进行管理：

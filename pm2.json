@@ -1,5 +1,5 @@
 {
-  "name": "smart-health",
+  "name": "smart-maintain",
   "script": "server.js",
   "env": {
     "NODE_ENV": "production"
