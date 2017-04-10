@@ -1,6 +1,6 @@
 import storage from '../../utils/storage'
 import angular from 'angular'
-
+import moment from 'moment'
 class NewAccountController {
   constructor(NewAccountService, $stateParams, $rootScope, $location, ngDialog, $state) {
     this.stateParams = $stateParams
@@ -12,10 +12,15 @@ class NewAccountController {
     this.sex = 'M' // M:男
     this.ngDialog = ngDialog
     this.$state = $state
+    this.showCalendar = false
+    this.dateTimePickerConfig = {
+      minView: 'day'
+    }
   }
 
   $onInit() {
     $('span[href="' + this.$location.url() + '"]').parent('li').addClass('flag')
+    moment.locale('zh-cn')
     this.isEdit = this.stateParams.isEdit
     if (this.isEdit) {
       this.userId = this.stateParams.userId
@@ -36,6 +41,8 @@ class NewAccountController {
         this.email = info.mail
         this.address = info.address
         this.remark = info.remark
+        this.birdthday = info.birdthday
+        this.relationShip = info.relationToCustomer
         if (info.role) {
           this.role = info.role
         }
@@ -91,12 +98,42 @@ class NewAccountController {
   }
 
   tips(data) {
-    var dialog2 = this.ngDialog.open({
+    var dialog = this.ngDialog.open({
       template: '<p style=" text-align:center" class="del-data-message">' + data + '</p>',
       plain: true,
       closeByDocument: false,
       closeByEscape: true
     })
+
+    setTimeout(() =>{
+      dialog.close()
+    },1500)
+  }
+
+  /**
+   * 打开日期选择器
+   *
+   * @memberOf BedSleepController
+   * @public
+   */
+  openCalendar() {
+    this.showCalendar = true
+    // this.$document.on('click', this.onDocumentClick.bind(this))
+  }
+
+
+  /**
+   * 选择日期
+   *
+   * @param {Date} date
+   *
+   * @memberOf BedSleepController
+   * @public
+   */
+  onSetTime(date) {
+    this.showCalendar = false
+
+    this.birdthday = moment(date).format('YYYY-MM-DD')
   }
 
 }
