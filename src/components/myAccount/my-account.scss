@@ -37,6 +37,13 @@
           input[type="text"],textarea{
             width:300px;
           }
+          div.tab-content-select{
+            position: relative;
+          }
+
+          .pos{
+            left:0;
+          }
         }
       }
       .btn{

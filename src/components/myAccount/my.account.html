@@ -55,7 +55,20 @@
       <div class="line">
         <label for="">生日</label>
         <div class="inline">
-          <input type="text" name="" value="" ng-model="$ctrl.birdthday">
+          <!-- <input type="text" name="" value="" ng-model="$ctrl.birdthday"> -->
+          <div class="tab-content-select">
+            <input class="date-input"
+              type="text"
+              readonly
+              ng-click="$ctrl.openCalendar()"
+              ng-model="$ctrl.birdthday">
+            <div class="date-picker pos" ng-show="$ctrl.showCalendar">
+              <datetimepicker
+                ng-model="$ctrl.timeStart"
+                datetimepicker-config="$ctrl.dateTimePickerConfig"
+                on-set-time="$ctrl.onSetTime(newDate)" />
+            </div>
+          </div>
         </div>
       </div>
       <div class="line">

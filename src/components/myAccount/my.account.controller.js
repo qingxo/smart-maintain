@@ -1,5 +1,5 @@
 import storage from '../../utils/storage'
-
+import moment from 'moment'
 class MyAccountController {
   constructor(MyAccountService, $stateParams, $rootScope, $location, ngDialog) {
     this.stateParams = $stateParams
@@ -7,10 +7,15 @@ class MyAccountController {
     this.$rootScope = $rootScope
     this.$location = $location
     this.ngDialog = ngDialog
+    this.showCalendar = false
+    this.dateTimePickerConfig = {
+      minView: 'day'
+    }
   }
 
   $onInit() {
     $('span[href="' + this.$location.url() + '"]').parent('li').addClass('flag')
+    moment.locale('zh-cn')
     this.loadDetail()
   }
 
@@ -62,6 +67,32 @@ class MyAccountController {
       closeByDocument: false,
       closeByEscape: true
     })
+  }
+
+  /**
+   * 打开日期选择器
+   *
+   * @memberOf BedSleepController
+   * @public
+   */
+  openCalendar() {
+    this.showCalendar = true
+    // this.$document.on('click', this.onDocumentClick.bind(this))
+  }
+
+
+  /**
+   * 选择日期
+   *
+   * @param {Date} date
+   *
+   * @memberOf BedSleepController
+   * @public
+   */
+  onSetTime(date) {
+    this.showCalendar = false
+
+    this.birdthday = moment(date).format('YYYY-MM-DD')
   }
 
 }
