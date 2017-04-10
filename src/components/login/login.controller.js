@@ -12,8 +12,6 @@ class LoginController {
   }
 
   $onInit() {
-    var myView = document.getElementById('myView')
-    myView.style.maxWidth = 'none'
     if (storage.get('ywLogin')) {
       this.rememberPWD = true
       this.LoginName = storage.get('ywLogin').userName
@@ -71,8 +69,6 @@ class LoginController {
           localData = Object.assign({}, localData, {token: token, sessionKey: sessionKey})
           storage.set('state', localData)
           this.$state.go('home.myaccount', {'userId': res.data.data.userId})
-          var myView = document.getElementById('myView')
-          myView.style.maxWidth = '1600px'
         }
       })
   }
